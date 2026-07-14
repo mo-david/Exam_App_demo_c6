@@ -9,7 +9,14 @@ abstract class EndPoints {
   static const String forgotPassword = "api/v1/auth/forgotPassword";
   static const String verifyResetCode ="api/v1/auth/verifyResetCode";
   static const String resetPassword = "api/v1/auth/resetPassword";
-
+//Exams
+  static const String exams = "api/v1/exams";
+//Questions
+  static const String questions = "api/v1/questions";
+  static const String questionsHistory = "api/v1/questions/history";
+  static const String checkQuestions = "api/v1/questions/check";
+//Subjects
+  static const String subjects = "api/v1/subjects";
 
 
 }

@@ -1,9 +1,14 @@
-import 'package:untitled/features/auth/domain/repo/repo.dart';
+import 'package:untitled/features/auth/domain/entities/forget_password_request.dart';
+import 'package:untitled/features/auth/domain/entities/auth_result.dart';
+import 'package:untitled/core/error/failures.dart';
+import 'package:untitled/features/auth/domain/repo/auth_repo.dart';
+import 'package:dartz/dartz.dart';
 
-class  ForgetPasswordUseCase {
-  final InterfaceRepo _repo;
+class ForgetPasswordUseCase {
+  final AuthRepo _repo;
   ForgetPasswordUseCase(this._repo);
-  Future<void> execute() async {
-    return await _repo.getAllSources();
+
+  Future<Either<Failure, AuthResult>> execute({required ForgetPasswordRequest request}) async {
+    return await _repo.forgetPassword(request: request);
   }
 }

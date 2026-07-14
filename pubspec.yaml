@@ -37,6 +37,9 @@ dependencies:
   flutter_bounceable: ^1.2.0
   flutter_bloc: ^9.1.1
   dio: ^5.10.0
+  dartz: ^0.10.1
+  get_it: ^9.2.1
+  injectable: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +54,7 @@ dev_dependencies:
   flutter_native_splash: ^2.4.8
   build_runner: ^2.15.1
   flutter_gen_runner: ^5.14.1
+  injectable_generator: ^3.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
