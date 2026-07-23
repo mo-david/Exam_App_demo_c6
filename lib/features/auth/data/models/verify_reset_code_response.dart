@@ -1,3 +1,5 @@
+import '../../domain/entities/auth_result.dart';
+
 class VerifyResetCodeResponse {VerifyResetCodeResponse({this.message, this.code});
 
 VerifyResetCodeResponse.fromJson(dynamic json) {

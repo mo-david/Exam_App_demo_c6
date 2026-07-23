@@ -11,6 +11,7 @@ class UserModel {
   bool? isVerified;
   String? id;
   String? createdAt;
+  String? passwordChangedAt;
 
   UserModel({
     this.username,
@@ -22,6 +23,7 @@ class UserModel {
     this.isVerified,
     this.id,
     this.createdAt,
+    this.passwordChangedAt,
   });
 
   UserModel.fromJson(dynamic json) {
@@ -34,6 +36,7 @@ class UserModel {
     isVerified = json['isVerified'];
     id = json['_id'];
     createdAt = json['createdAt'];
+    passwordChangedAt = json['passwordChangedAt'];
   }
 
   Map<String, dynamic> toJson() {
@@ -47,6 +50,7 @@ class UserModel {
     map['isVerified'] = isVerified;
     map['_id'] = id;
     map['createdAt'] = createdAt;
+    map['passwordChangedAt'] = passwordChangedAt;
     return map;
   }
 

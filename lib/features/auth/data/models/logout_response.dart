@@ -1,3 +1,5 @@
+import '../../domain/entities/auth_result.dart';
+
 class LogoutResponse {LogoutResponse({this.message, this.code});
 
 LogoutResponse.fromJson(dynamic json) {

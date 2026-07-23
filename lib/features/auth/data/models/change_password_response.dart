@@ -1,3 +1,6 @@
+
+import '../../domain/entities/auth_result.dart';
+
 class ChangePasswordResponse {
   ChangePasswordResponse({this.message, this.token, this.code});
 

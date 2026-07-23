@@ -1,3 +1,5 @@
+import '../../domain/entities/auth_result.dart';
+
 class ForgetPasswordResponse {
   ForgetPasswordResponse({this.message, this.code});
 

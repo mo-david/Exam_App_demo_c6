@@ -1,3 +1,7 @@
+import 'package:untitled/features/auth/data/models/user_model.dart';
+
+import '../../domain/entities/auth_result.dart';
+
 class GetLoggedUserInfoResponse {GetLoggedUserInfoResponse({this.message, this.user, this.code});
 
 GetLoggedUserInfoResponse.fromJson(dynamic json) {

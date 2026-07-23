@@ -1,3 +1,5 @@
+import '../../domain/entities/auth_result.dart';
+
 class ResetPasswordResponse {ResetPasswordResponse({this.message, this.code});
 
 ResetPasswordResponse.fromJson(dynamic json) {

@@ -1,3 +1,6 @@
+import 'package:untitled/features/auth/domain/entities/auth_result.dart';
+
+
 class DeleteMyAccountResponse {
   DeleteMyAccountResponse({this.message, this.code});
 
