@@ -1,1 +1,32 @@
-class VerifyResetCodeResponse {}
+class VerifyResetCodeResponse {VerifyResetCodeResponse({this.message, this.code});
+
+VerifyResetCodeResponse.fromJson(dynamic json) {
+  message = json["message"];
+  code = json["code"];
+}
+
+String? message;
+int? code;
+
+Map<String, dynamic> toJson() {
+  final Map<String, dynamic> map = new Map<String, dynamic>();
+  map["message"] = this.message;
+  map["code"] = this.code;
+  return map;
+}
+
+AuthResult toEntity() {
+  return AuthResult(
+    message: message ?? '',
+    token: '',
+    user: UserEntity(
+      name: '',
+      email: '',
+      role: 'user',
+    ),
+  );
+}}
+//{
+//     "message": "Reset code is invalid or has expired",
+//     "code": 400
+// }
