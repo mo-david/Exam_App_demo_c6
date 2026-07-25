@@ -4,7 +4,7 @@ import 'package:untitled/features/auth/domain/entities/sign_in_request.dart';
 import 'package:untitled/features/auth/domain/entities/forget_password_request.dart';
 
 import '../../domain/entities/change_password_request.dart';
-import '../../domain/entities/edit_profile.dart';
+import '../../domain/entities/edit_profile_request.dart';
 import '../../domain/entities/reset_password_request.dart';
 import '../../domain/entities/verify_reset_code_request.dart';
 

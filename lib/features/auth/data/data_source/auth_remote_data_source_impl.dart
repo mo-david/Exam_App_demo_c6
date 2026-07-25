@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
 import 'package:untitled/features/auth/domain/entities/change_password_request.dart';
-import 'package:untitled/features/auth/domain/entities/edit_profile.dart';
+import 'package:untitled/features/auth/domain/entities/edit_profile_request.dart';
 import 'package:untitled/features/auth/domain/entities/reset_password_request.dart';
 
 import '../../../../config/dio/dio_module.dart';

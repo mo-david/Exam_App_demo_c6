@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
 import '../entities/auth_result.dart';
 import '../entities/change_password_request.dart';
-import '../entities/edit_profile.dart';
+import '../entities/edit_profile_request.dart';
 import '../entities/forget_password_request.dart';
 import '../entities/reset_password_request.dart';
 import '../entities/sign_in_request.dart';

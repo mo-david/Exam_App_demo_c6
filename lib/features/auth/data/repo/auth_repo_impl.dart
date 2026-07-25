@@ -11,7 +11,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../../domain/entities/change_password_request.dart';
-import '../../domain/entities/edit_profile.dart';
+import '../../domain/entities/edit_profile_request.dart';
 import '../../domain/entities/reset_password_request.dart';
 import '../../domain/entities/verify_reset_code_request.dart';
 import '../models/change_password_response.dart';

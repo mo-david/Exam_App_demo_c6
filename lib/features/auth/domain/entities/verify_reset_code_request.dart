@@ -1,9 +1,9 @@
 class VerifyResetCodeRequest {
-  final String restCode;
-  VerifyResetCodeRequest({required this.restCode});
+  final String resetCode;
+  VerifyResetCodeRequest({required this.resetCode});
   Map<String, dynamic> toJson() {
     return {
-      "restCode": restCode,
+      "resetCode": resetCode,
     };
   }
 

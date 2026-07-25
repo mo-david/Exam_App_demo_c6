@@ -4,6 +4,7 @@ class EditProfileRequest {
   final String? lastName;
   final String? email;
   final String? password;
+  final String? rePassword;
   final String? phone;
 
   EditProfileRequest({
@@ -12,6 +13,7 @@ class EditProfileRequest {
     this.lastName,
     this.email,
     this.password,
+    this.rePassword,
     this.phone,
   });
 
@@ -31,6 +33,9 @@ class EditProfileRequest {
       }
       if (password != null) {
         data['password'] = password;
+      }
+      if (rePassword != null) {
+        data['rePassword'] = rePassword;
       }
       if (phone != null) {
         data['phone'] = phone;
