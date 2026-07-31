@@ -10,6 +10,7 @@ import 'package:untitled/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
+import '../../../../config/services/token_storage.dart';
 import '../../domain/entities/change_password_request.dart';
 import '../../domain/entities/edit_profile_request.dart';
 import '../../domain/entities/reset_password_request.dart';
@@ -27,8 +28,8 @@ import '../models/verify_reset_code_response.dart';
 @Injectable(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
   final AuthRemoteDataSource _remoteDataSource;
-
-  AuthRepoImpl(this._remoteDataSource);
+  final TokenStorage _tokenStorage;
+  AuthRepoImpl(this._remoteDataSource, this._tokenStorage);
 
   @override
   Future<Either<Failure, AuthResult>> signUp({
@@ -39,12 +40,17 @@ class AuthRepoImpl implements AuthRepo {
         request: request,
       );
       if (response.statusCode == 200 && response.data["message"] == "success") {
-        return Right(SignUpResponse.fromJson(response.data).toEntity());
+        final signUpResponse = SignUpResponse.fromJson(response.data);
+        if ( signUpResponse.token!=null) {
+          await _tokenStorage.saveToken(signUpResponse.token!);
+        }
+
+        return Right(signUpResponse.toEntity());
       } else {
         return Left(ServerFailure(response.data["message"]));
       }
     } on DioException catch (error) {
-      return Left(error.response?.data["message"]);
+      return Left(ServerFailure(error.response?.data["message"]??"some thing went wrong"));
     }
   }
 
@@ -57,12 +63,17 @@ class AuthRepoImpl implements AuthRepo {
         request: request,
       );
       if (response.statusCode == 200 && response.data["message"] == "success") {
-        return Right(SignInResponse.fromJson(response.data).toEntity());
+        final signInResponse = SignInResponse.fromJson(response.data);
+        if ( signInResponse.token!=null) {
+          await _tokenStorage.saveToken(signInResponse.token!);
+        }
+
+        return Right(signInResponse.toEntity());
       } else {
         return Left(ServerFailure(response.data["message"]));
       }
     } on DioException catch (error) {
-      return Left(error.response?.data["message"]);
+      return Left(ServerFailure(error.response?.data["message"]??"some thing went wrong"));
     }
   }
 
@@ -80,7 +91,7 @@ class AuthRepoImpl implements AuthRepo {
         return Left(ServerFailure(response.data["message"]));
       }
     } on DioException catch (error) {
-      return Left(error.response?.data["message"]);
+      return Left(ServerFailure(error.response?.data["message"]??"some thing went wrong"));
     }
   }
 
@@ -99,7 +110,7 @@ class AuthRepoImpl implements AuthRepo {
         return Left(ServerFailure(response.data["message"]));
       }
     } on DioException catch (error) {
-      return Left(error.response?.data["message"]);
+      return Left(ServerFailure(error.response?.data["message"]??"some thing went wrong"));
     }
   }
 
@@ -117,7 +128,7 @@ class AuthRepoImpl implements AuthRepo {
         return Left(ServerFailure(response.data["message"]));
       }
     } on DioException catch (error) {
-      return Left(error.response?.data["message"]);
+      return Left(ServerFailure(error.response?.data["message"]??"some thing went wrong"));
     }
   }
 
@@ -130,12 +141,17 @@ class AuthRepoImpl implements AuthRepo {
         request: request,
       );
       if (response.statusCode == 200 && response.data["message"] == "success") {
-        return Right(ChangePasswordResponse.fromJson(response.data).toEntity());
+        final changePasswordResponse = ChangePasswordResponse.fromJson(response.data);
+        if ( changePasswordResponse.token!=null) {
+          await _tokenStorage.saveToken(changePasswordResponse.token!);
+        }
+
+        return Right(changePasswordResponse.toEntity());
       } else {
         return Left(ServerFailure(response.data["message"]));
       }
     } on DioException catch (error) {
-      return Left(error.response?.data["message"]);
+      return Left(ServerFailure(error.response?.data["message"]??"some thing went wrong"));
     }
   }
 
@@ -153,7 +169,7 @@ class AuthRepoImpl implements AuthRepo {
         return Left(ServerFailure(response.data["message"]));
       }}
       on DioException catch (error) {
-      return Left(error.response?.data["message"]);
+      return Left(ServerFailure(error.response?.data["message"]??"some thing went wrong"));
     }
   }
 
@@ -162,12 +178,13 @@ Future<Either<Failure, AuthResult>> deleteMyAccount() async {
     try {
       final Response response = await _remoteDataSource.deleteMyAccount();
       if (response.statusCode == 200 && response.data["message"] == "success") {
+        await _tokenStorage.deleteToken();
         return Right(DeleteMyAccountResponse.fromJson(response.data).toEntity());
         } else {
         return Left(ServerFailure(response.data["message"]));
       }
     } on DioException catch (error) {
-      return Left(error.response?.data["message"]);
+      return Left(ServerFailure(error.response?.data["message"]??"some thing went wrong"));
     }
   }
 @override
@@ -175,12 +192,13 @@ Future<Either<Failure, AuthResult>> logout() async {
     try {
       final Response response = await _remoteDataSource.logout();
       if (response.statusCode == 200 && response.data["message"] == "success") {
+        await _tokenStorage.deleteToken();
         return Right(LogoutResponse.fromJson(response.data).toEntity());
         } else {
         return Left(ServerFailure(response.data["message"]));
       }
     } on DioException catch (error) {
-      return Left(error.response?.data["message"]);
+      return Left(ServerFailure(error.response?.data["message"]??"some thing went wrong"));
     }
   }
 
@@ -194,7 +212,7 @@ Future<Either<Failure, AuthResult>> getLoggedUserInfo() async {
         return Left(ServerFailure(response.data["message"]));
       }
     } on DioException catch (error) {
-      return Left(error.response?.data["message"]);
+      return Left(ServerFailure(error.response?.data["message"]??"some thing went wrong"));
       }
 }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/core/routing/page_routes_name.dart';
 
 import '../../features/auth/presentation/view/forgot_password_view.dart';
-import '../../features/auth/presentation/view/login_view.dart';
+import '../../features/auth/presentation/view/sign_in_view.dart';
 import '../../features/auth/presentation/view/reset_password_view.dart';
 import '../../features/auth/presentation/view/sign_up_view.dart';
 import '../../features/auth/presentation/view/verification_code_view.dart';
@@ -13,7 +13,7 @@ abstract class AppRouter {
     switch (settings.name) {
       case PageRoutesName.initial:
       case PageRoutesName.login:
-        return MaterialPageRoute(builder: (context) => const LoginView());
+        return MaterialPageRoute(builder: (context) => const SignInView());
       case PageRoutesName.signUp:
         return MaterialPageRoute(builder: (context) => const SignUpView());
       case PageRoutesName.forgotPassword:
@@ -26,7 +26,7 @@ abstract class AppRouter {
         return MaterialPageRoute(
             builder: (context) => const ResetPasswordView());
       default:
-        return MaterialPageRoute(builder: (context) => const LoginView());
+        return MaterialPageRoute(builder: (context) => const SignInView());
     }
   }
 }
