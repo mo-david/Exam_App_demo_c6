@@ -30,6 +30,8 @@ import '../../features/auth/domain/use_case/sign_in_use_case.dart' as _i847;
 import '../../features/auth/domain/use_case/signup_use_case.dart' as _i371;
 import '../../features/auth/domain/use_case/verify_reset_code_use_case.dart'
     as _i660;
+import '../../features/auth/presentation/view_model/sign_in_view_model.dart'
+    as _i669;
 import '../dio/dio_module.dart' as _i977;
 import '../services/token_storage.dart' as _i2;
 
@@ -46,7 +48,10 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i508.AuthRemoteDataSourceImpl(gh<_i977.NetworkDioHandler>()),
     );
     gh.factory<_i170.AuthRepo>(
-      () => _i984.AuthRepoImpl(gh<_i182.AuthRemoteDataSource>()),
+      () => _i984.AuthRepoImpl(
+        gh<_i182.AuthRemoteDataSource>(),
+        gh<_i2.TokenStorage>(),
+      ),
     );
     gh.factory<_i863.ChangePasswordUseCase>(
       () => _i863.ChangePasswordUseCase(gh<_i170.AuthRepo>()),
@@ -68,6 +73,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i660.VerifyResetCodeUseCase>(
       () => _i660.VerifyResetCodeUseCase(gh<_i170.AuthRepo>()),
+    );
+    gh.factory<_i669.SignInViewModel>(
+      () => _i669.SignInViewModel(gh<_i847.SignInUseCase>()),
     );
     return this;
   }

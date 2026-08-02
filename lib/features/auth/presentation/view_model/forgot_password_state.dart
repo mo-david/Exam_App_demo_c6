@@ -1,3 +1,4 @@
+import '../../../../core/error/failures.dart';
 import '../../domain/entities/auth_result.dart';
 
 sealed class ForgotPasswordState {}
@@ -8,5 +9,6 @@ ForgotPasswordSuccess(this.authResult);
 final AuthResult authResult;
 }
 class ForgotPasswordError extends ForgotPasswordState{
-
+  ForgotPasswordError(this.failure);
+  final Failure failure;
 }
