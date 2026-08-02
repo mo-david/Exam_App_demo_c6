@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +15,6 @@ SignInViewModel(this.signInUseCase):super (SignInInitial());
 void signIn({required String email,required String password})async{
   emit (SignInLoading());
 
-  await Future.delayed(const Duration(seconds: 2));
   final request = SignInRequest(email: email, password: password);
   final result = await signInUseCase.execute(request: request);
 switch (result){
